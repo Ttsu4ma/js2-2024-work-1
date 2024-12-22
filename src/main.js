@@ -1,5 +1,5 @@
 import './style.css';
-
+//チャンピオン一覧
 const champions = [
   { name: "アムム" },
   { name: "イレリア" },
@@ -71,7 +71,7 @@ const selectedChampions = [];
 // ボタンを生成する場所を取得
 const buttonContainer = document.querySelector('#champion-buttons');
 
-// ボタンを生成
+// ボタン生成
 champions.forEach((champion, index) => {
   const button = document.createElement('button');
   button.classList.add('champion-button');
