@@ -1,24 +1,39 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import './style.css';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const champions = [
+  { name: "アーゴット" },
+  { name: "アーリ" },
+  { name: "エズリアル" },
+  { name: "ダリウス" },
+  { name: "アッシュ" },
+];
 
-setupCounter(document.querySelector('#counter'))
+const selectedChampions = [];
+
+// チャンピオン一覧をボタンとして生成
+document.querySelector('#champion-buttons').innerHTML = champions
+  .map((champion, index) => `<button class="champion-button" data-index="${index}">${champion.name}</button>`)
+  .join('');
+
+// ボタンをクリックした際の処理を設定
+document.querySelectorAll('.champion-button').forEach((button) => {
+  button.addEventListener('click', (event) => {
+    const index = event.target.getAttribute('data-index');
+    const champion = champions[index];
+
+    // チャンピオンを追加（最大8体まで）
+    if (selectedChampions.length < 8) {
+      selectedChampions.push(champion);
+      updateTeam();
+    } else {
+      alert("チームは最大8体までです！");
+    }
+  });
+});
+
+// チームの表示を更新
+function updateTeam() {
+  document.querySelector('#selected-champions').innerHTML = selectedChampions
+    .map((champion) => `<li>${champion.name}</li>`)
+    .join('');
+}
