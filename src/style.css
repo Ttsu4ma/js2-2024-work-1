@@ -1,28 +1,52 @@
-body {
+.body {
   margin: 0;
   display: flex;
-  min-width: 320px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
   font-family: "Inter", Arial, sans-serif;
 }
+.main {
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+}
 
+
+#selected-champions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#selected-champions li {
+  display: inline-block;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border: 1px solid #888;
+  background-color: #646cff;
+  color: white;
+  border-radius: 0.5rem;
+} 
 .sidebar {
   width: 25%;
   padding: 1rem;
   background-color: #1a1a1a;
   color: white;
-  overflow-y: auto;
-}
-
-.main {
-  width: 75%;
-  padding: 1rem;
+  overflow-y: auto; /* 縦方向スクロールを有効化 */
+  display: flex; /* フレックスボックスを有効化 */
+  flex-direction: column; /* 要素を縦方向に配置 */
+  gap: 0.5rem; /* ボタン間にスペースを追加 */
 }
 
 button.champion-button {
   display: block;
-  width: 100%;
-  margin: 0.5rem 0;
+  width: 100%; /* ボタンを親要素の幅に合わせる */
+  margin: 0; /* 横方向の余白を削除 */
   padding: 0.8rem;
   font-size: 1rem;
   font-weight: bold;
@@ -38,13 +62,23 @@ button.champion-button:hover {
   background-color: #535bf2;
   color: #ffffff;
 }
-
-#selected-champions li {
-  display: inline-block;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  border: 1px solid #888;
-  background-color: #646cff;
+.clear-button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
   color: white;
-  border-radius: 0.5rem;
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.clear-button:hover {
+  background-color: #ff6666;
+}
+
+.clear-button:active {
+  transform: scale(0.95);
 }

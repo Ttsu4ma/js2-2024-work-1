@@ -1,39 +1,108 @@
 import './style.css';
 
 const champions = [
+  { name: "アムム" },
+  { name: "イレリア" },
+  { name: "ザイラ" },
+  { name: "シンジド" },
+  { name: "ステブ" },
+  { name: "ガレン" },
+  { name: "トランドル" },
+  { name: "ドレイブン" },
+  { name: "パウダー" },
+  { name: "マディー" },
+  { name: "モルガナ" },
+  { name: "ラックス" },
+  { name: "ヴァイオレット" },
+  { name: "ヴェックス" },
+  { name: "アカリ" },
   { name: "アーゴット" },
-  { name: "アーリ" },
+  { name: "カミール" },
+  { name: "ジグス" },
+  { name: "セト" },
+  { name: "ゼリ" },
+  { name: "トリスターナ" },
+  { name: "ノクターン" },
+  { name: "ブラッドミア" },
+  { name: "レオナ" },
+  { name: "レナータ" },
+  { name: "レル" },
+  { name: "ヴァンダー" },
   { name: "エズリアル" },
-  { name: "ダリウス" },
-  { name: "アッシュ" },
+  { name: "カシオペア" },
+  { name: "ガングプランク" },
+  { name: "コグ＝マウ" },
+  { name: "スウェイン" },
+  { name: "スカー" },
+  { name: "スミーチ" },
+  { name: "TF" },
+  { name: "ナミ" },
+  { name: "ヌヌ" },
+  { name: "プリッツ" },
+  { name: "レニー" },
+  { name: "ロリス" },
+  { name: "アンベッサ" },
+  { name: "イラオイ" },
+  { name: "エコー" },
+  { name: "エリス" },
+  { name: "ガレン" },
+  { name: "コーキ" },
+  { name: "シルコ" },
+  { name: "ゾーイ" },
+  { name: "ツイッチ" },
+  { name: "ムンド" },
+  { name: "ハイマ―" },
+  { name: "ヴァイ" },
+  { name: "ケイトリン" },
+  { name: "ジェイス" },
+  { name: "ジンクス" },
+  { name: "セヴィカ" },
+  { name: "マルザハール" },
+  { name: "モルデカイザー" },
+  { name: "ランブル" },
+  { name: "ルブラン" },
+  { name: "ビクター" },
+  { name: "メル" },
+  { name: "ワーウィック" }
 ];
 
 const selectedChampions = [];
 
-// チャンピオン一覧をボタンとして生成
-document.querySelector('#champion-buttons').innerHTML = champions
-  .map((champion, index) => `<button class="champion-button" data-index="${index}">${champion.name}</button>`)
-  .join('');
+// ボタンを生成する場所を取得
+const buttonContainer = document.querySelector('#champion-buttons');
 
-// ボタンをクリックした際の処理を設定
-document.querySelectorAll('.champion-button').forEach((button) => {
-  button.addEventListener('click', (event) => {
-    const index = event.target.getAttribute('data-index');
-    const champion = champions[index];
+// ボタンを生成
+champions.forEach((champion, index) => {
+  const button = document.createElement('button');
+  button.classList.add('champion-button');
+  button.textContent = champion.name;
+  button.setAttribute('data-index', index);
 
-    // チャンピオンを追加（最大8体まで）
-    if (selectedChampions.length < 8) {
+  // ボタンのクリックイベントを設定
+  button.addEventListener('click', () => {
+    if (selectedChampions.length < 10) { // 上限を10体に変更
       selectedChampions.push(champion);
       updateTeam();
     } else {
-      alert("チームは最大8体までです！");
+      alert("チームは最大10体までです！");
     }
   });
+
+  // ボタンをコンテナに追加
+  buttonContainer.appendChild(button);
 });
 
-// チームの表示を更新
+// チームを更新する関数
 function updateTeam() {
-  document.querySelector('#selected-champions').innerHTML = selectedChampions
+  const teamContainer = document.querySelector('#selected-champions');
+  teamContainer.innerHTML = selectedChampions
     .map((champion) => `<li>${champion.name}</li>`)
     .join('');
 }
+
+// クリアボタンの処理を追加
+const clearButton = document.querySelector('#clear-team');
+clearButton.addEventListener('click', () => {
+  selectedChampions.length = 0; // チームを空にする
+  updateTeam(); // チーム表示を更新
+});
