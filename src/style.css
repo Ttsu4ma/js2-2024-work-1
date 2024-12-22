@@ -1,25 +1,48 @@
-.body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  font-family: "Inter", Arial, sans-serif;
-}
-.main {
-  width: 100%;
-  padding: 1rem;
-  text-align: center;
+  padding: 0;
 }
 
+body {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  height: 100vh; /* 画面全体を占める */
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: #f0f0f0;
+}
+
+.container {
+  display: flex; /* サイドバーとメインコンテンツを横並び */
+  width: 100%; /* 横幅いっぱいに広げる */
+  height: 100%; /* 縦幅もいっぱいに広げる */
+}
+
+.sidebar {
+  width: 300px; /* サイドバーの幅を固定 */
+  padding: 1rem;
+  background-color: #1a1a1a;
+  color: white;
+  overflow-y: auto; /* 縦方向のスクロールを有効化 */
+  height: 100vh; /* サイドバーの高さを画面全体に */
+}
+
+.main {
+  flex: 1; /* メインコンテンツを残りの幅いっぱいに広げる */
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* 縦方向のスクロールを有効化 */
+}
 
 #selected-champions {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
@@ -31,22 +54,12 @@
   background-color: #646cff;
   color: white;
   border-radius: 0.5rem;
-} 
-.sidebar {
-  width: 25%;
-  padding: 1rem;
-  background-color: #1a1a1a;
-  color: white;
-  overflow-y: auto; /* 縦方向スクロールを有効化 */
-  display: flex; /* フレックスボックスを有効化 */
-  flex-direction: column; /* 要素を縦方向に配置 */
-  gap: 0.5rem; /* ボタン間にスペースを追加 */
 }
 
 button.champion-button {
   display: block;
-  width: 100%; /* ボタンを親要素の幅に合わせる */
-  margin: 0; /* 横方向の余白を削除 */
+  width: 100%;
+  margin: 0;
   padding: 0.8rem;
   font-size: 1rem;
   font-weight: bold;
@@ -62,6 +75,7 @@ button.champion-button:hover {
   background-color: #535bf2;
   color: #ffffff;
 }
+
 .clear-button {
   margin-top: 1rem;
   padding: 0.8rem 1.5rem;
